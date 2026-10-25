@@ -143,6 +143,17 @@ export async function getPosts() {
   const rawPosts = await reader.collections.posts.all();
   return rawPosts
     .filter((p) => (process.env.NODE_ENV === "production" ? !p.entry.draft : true))
+    .map((p) => ({
+      slug: p.slug,
+      entry: {
+        title: p.entry.title,
+        excerpt: p.entry.excerpt,
+        category: p.entry.category,
+        tags: p.entry.tags,
+        publish_date: p.entry.publish_date,
+        draft: p.entry.draft,
+      },
+    }))
     .sort(
       (a, b) =>
         new Date(b.entry.publish_date || 0).getTime() -
