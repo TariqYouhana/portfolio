@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #121211;
+  --surface: #1B1A18;
+  --text: #EDE6D3;
+  --text-muted: #A9A38F;
+  --border: rgba(237, 230, 211, 0.12);
+  --signal: #FB1C06;
+  --logo: var(--signal);
+  --earth-olive: #7A7961;
+  --earth-slate: #6E7A8C;
+  --earth-tan: #A97B4F;
+  --gold: #D9A832;
+  --glass-bg: rgba(27, 26, 24, 0.75);
+}
+
+[data-theme='light'] {
+  --bg: #F4EFE3;
+  --surface: #EDE6D3;
+  --text: #1B1A18;
+  --text-muted: #5E5A4C;
+  --border: rgba(27, 26, 24, 0.14);
+  --signal: #C21F08;
+  --logo: var(--signal);
+  --gold: #B8860B;
+  --glass-bg: rgba(237, 230, 211, 0.82);
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) {
+    /* If light theme is explicitly requested without data-theme override, can follow this, but plan specifies dark as default */
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body), system-ui, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: var(--signal);
+  color: #EDE6D3;
+}
+
+/* Glass styling token utility */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+/* Fallback for browsers without backdrop-filter */
+@supports not ((-webkit-backdrop-filter: blur(16px)) or (backdrop-filter: blur(16px))) {
+  .glass-panel {
+    background: var(--surface);
+  }
+}
+
+/* Focus rings specification */
+:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+[data-theme='light'] :focus-visible {
+  outline: 2px solid var(--text);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

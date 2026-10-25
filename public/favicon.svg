@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <circle cx="50" cy="50" r="48" fill="#FB1C06" />
+  <circle cx="50" cy="50" r="43" fill="none" stroke="#EDE6D3" stroke-width="2.5" />
+  <text x="50" y="58" font-family="system-ui, sans-serif" font-weight="900" font-size="28" fill="#EDE6D3" text-anchor="middle" letter-spacing="1">TYL</text>
+</svg>
