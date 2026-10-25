@@ -171,9 +171,65 @@ export async function getAchievements() {
     );
 }
 
-export async function getPhotos() {
+export interface PhotoItem {
+  slug: string;
+  entry: {
+    title: string;
+    album?: string | null;
+    caption?: string | null;
+    alt_text: string;
+    location_name?: string | null;
+    latitude?: string | null;
+    longitude?: string | null;
+    taken_at?: string | null;
+    order: number;
+    draft: boolean;
+    image_path?: string | null;
+  };
+}
+
+export interface AlbumItem {
+  slug: string;
+  entry: {
+    title: string;
+    description?: string | null;
+    order: number;
+  };
+}
+
+export async function getAlbums(): Promise<AlbumItem[]> {
+  const raw = await reader.collections.albums.all();
+  return raw
+    .map((a) => ({
+      slug: a.slug,
+      entry: {
+        title: a.entry.title,
+        description: a.entry.description,
+        order: a.entry.order ?? 10,
+      },
+    }))
+    .sort((a, b) => a.entry.order - b.entry.order);
+}
+
+export async function getPhotos(): Promise<PhotoItem[]> {
   const raw = await reader.collections.photos.all();
   return raw
     .filter((p) => (process.env.NODE_ENV === "production" ? !p.entry.draft : true))
-    .sort((a, b) => (a.entry.order ?? 10) - (b.entry.order ?? 10));
+    .map((p) => ({
+      slug: p.slug,
+      entry: {
+        title: p.entry.title,
+        album: p.entry.album,
+        caption: p.entry.caption,
+        alt_text: p.entry.alt_text,
+        location_name: p.entry.location_name,
+        latitude: p.entry.latitude,
+        longitude: p.entry.longitude,
+        taken_at: p.entry.taken_at,
+        order: p.entry.order ?? 10,
+        draft: p.entry.draft,
+        image_path: p.entry.image_path,
+      },
+    }))
+    .sort((a, b) => a.entry.order - b.entry.order);
 }

@@ -1,36 +1,28 @@
-import Link from "next/link";
-import { ArrowLeft, Camera } from "lucide-react";
+import { Suspense } from "react";
+import type { Metadata } from "next";
+import { getPhotos, getAlbums } from "@/lib/content";
+import { GalleryContainer } from "@/components/gallery/GalleryContainer";
 
-export default function GalleryPage() {
+export const metadata: Metadata = {
+  title: "Visual Journal & Photography · Tariq Youhana Leon",
+  description:
+    "3D journal coverflow of 35mm optical street photography, architectural chiaroscuro, and travel essays.",
+};
+
+export default async function GalleryPage() {
+  const [photos, albums] = await Promise.all([getPhotos(), getAlbums()]);
+
   return (
-    <div className="w-full max-w-7xl mx-auto px-6 md:px-10 py-12 space-y-8">
-      <Link
-        href="/"
-        className="inline-flex items-center gap-2 text-xs font-mono text-muted hover:text-text transition-colors"
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 py-10 space-y-8">
+      <Suspense
+        fallback={
+          <div className="p-20 text-center font-mono text-xs text-muted">
+            LOADING_JOURNAL // 3D_SCENE_INITIALIZING...
+          </div>
+        }
       >
-        <ArrowLeft className="w-3.5 h-3.5" />
-        <span>BACK TO HOME</span>
-      </Link>
-
-      <div className="space-y-3">
-        <span className="font-mono text-xs uppercase text-signal tracking-widest block">
-          JOURNAL // 3D_COVERFLOW
-        </span>
-        <h1 className="font-display text-4xl sm:text-6xl font-bold uppercase tracking-tight">
-          Visual Journal & Photography
-        </h1>
-        <p className="text-base text-muted max-w-2xl leading-relaxed">
-          Based on Reference 04: A 3D fanned journal coverflow featuring double-page spreads, travel narratives, and high-fidelity photo documentation. Scheduled for Phase 5.
-        </p>
-      </div>
-
-      <div className="p-12 rounded-glass glass-panel border border-border flex flex-col items-center justify-center text-center space-y-4">
-        <Camera className="w-12 h-12 text-signal opacity-80" />
-        <h2 className="font-display text-2xl font-bold uppercase">Journal Coverflow Ready For Build</h2>
-        <p className="text-sm text-muted max-w-md">
-          Phase 5 will assemble the 3D coverflow carousel with open spreads, perspective tilt, album filters, and deep links.
-        </p>
-      </div>
+        <GalleryContainer photos={photos} albums={albums} />
+      </Suspense>
     </div>
   );
 }
