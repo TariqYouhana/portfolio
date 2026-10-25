@@ -72,8 +72,32 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       })
     : "Recent";
 
+  // ── JSON-LD BlogPosting schema ───────────────────────────────────────────
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt ?? undefined,
+    datePublished: post.publish_date ?? undefined,
+    url: `https://tariqleon.com/blog/${slug}`,
+    author: {
+      "@type": "Person",
+      name: "Tariq Youhana Leon",
+      url: "https://tariqleon.com",
+    },
+    publisher: {
+      "@type": "Person",
+      name: "Tariq Youhana Leon",
+      url: "https://tariqleon.com",
+    },
+  };
+
   return (
     <div className="w-full max-w-5xl mx-auto px-6 md:px-10 py-12 space-y-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Back to archive link */}
       <Link
         href="/blog"
