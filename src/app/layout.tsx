@@ -83,11 +83,15 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   let displayName = "TARIQ YOUHANA LEON";
+  let contactEmail = "";
+  let showEmail = false;
   try {
     const settings = await getSiteSettings();
     if (settings.display_name) {
       displayName = settings.display_name;
     }
+    contactEmail = settings.contact_email ?? "";
+    showEmail = settings.show_email ?? false;
   } catch (e) {
     console.warn("Could not load settings in RootLayout, using fallback:", e);
   }
@@ -104,7 +108,7 @@ export default async function RootLayout({
         <main id="main-content" className="flex-1 flex flex-col pt-24 sm:pt-28">
           {children}
         </main>
-        <Footer displayName={displayName} />
+        <Footer displayName={displayName} contactEmail={contactEmail} showEmail={showEmail} />
       </body>
     </html>
   );

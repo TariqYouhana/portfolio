@@ -5,8 +5,8 @@ import {
   Instagram,
   Youtube,
   Facebook,
-  Mail,
 } from "lucide-react";
+import { MailtoLink } from "./MailtoLink";
 
 interface Props {
   contactEmail: string;
@@ -67,22 +67,13 @@ export function ContactCoordinates({
         </div>
       )}
 
-      {/* Email */}
-      {showEmail && (
+      {/* Email — mailto link + copy button, rendered client-side only */}
+      {showEmail && contactEmail && (
         <div className="space-y-2">
           <h3 className="font-display font-bold text-sm uppercase tracking-wide text-text">
             Direct Email
           </h3>
-          <a
-            href={`mailto:${contactEmail}`}
-            className="flex items-start gap-3 text-sm text-muted hover:text-text transition-colors group"
-          >
-            <Mail
-              className="w-4 h-4 mt-0.5 flex-shrink-0 group-hover:text-signal transition-colors"
-              aria-hidden="true"
-            />
-            {contactEmail}
-          </a>
+          <MailtoLink email={contactEmail} />
         </div>
       )}
 
@@ -116,7 +107,7 @@ export function ContactCoordinates({
         </ul>
       </div>
 
-      {/* Divider + response note */}
+      {/* Divider + note */}
       <div className="pt-4 border-t border-border">
         <p className="text-xs text-muted leading-relaxed font-mono">
           RESPONSE TIME — typically within 48 hrs, often sooner for well-scoped briefs.

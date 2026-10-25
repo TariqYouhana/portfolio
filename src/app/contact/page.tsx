@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getSiteSettings } from "@/lib/content";
-import { ContactForm } from "@/components/contact/ContactForm";
 import { ContactCoordinates } from "@/components/contact/ContactCoordinates";
+import { MailtoLink } from "@/components/contact/MailtoLink";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Contact — Tariq Youhana Leon",
-    description: "Engineering, consulting, research — the form is open.",
+    description: "Engineering, consulting, research — reach out directly.",
   },
 };
 
@@ -35,16 +35,27 @@ export default async function ContactPage() {
         </h1>
         <p className="text-muted text-base max-w-xl leading-relaxed">
           For engineering engagements, research collaborations, consulting briefs, or anything
-          you&#39;d rather discuss directly — the form is open.
+          you&#39;d rather discuss directly — reach out by email.
         </p>
       </div>
 
       {/* ── Two-column layout ── */}
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-16 items-start">
-        {/* Form */}
-        <div className="p-8 rounded-glass glass-panel border border-border">
-          <ContactForm />
-        </div>
+        {/* Primary email CTA */}
+        {s.show_email && s.contact_email && (
+          <div className="p-8 rounded-glass glass-panel border border-border space-y-6">
+            <div className="space-y-2">
+              <span className="font-mono text-xs uppercase text-signal tracking-widest font-semibold">
+                EMAIL //
+              </span>
+              <p className="text-sm text-muted leading-relaxed max-w-md">
+                Write me directly. Include a short description of what you&#39;d like to work on
+                and I&#39;ll respond within 48 hours.
+              </p>
+            </div>
+            <MailtoLink email={s.contact_email} className="mt-2" />
+          </div>
+        )}
 
         {/* Coordinates sidebar */}
         <ContactCoordinates

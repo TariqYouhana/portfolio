@@ -9,18 +9,21 @@ import {
   Instagram,
   Youtube,
   Facebook,
-  Mail,
   MapPin,
   ArrowUpRight,
   FileText,
 } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
 
+import { MailtoLink } from "@/components/contact/MailtoLink";
+
 interface FooterProps {
   displayName?: string;
+  contactEmail?: string;
+  showEmail?: boolean;
 }
 
-export function Footer({ displayName = "TARIQ YOUHANA LEON" }: FooterProps) {
+export function Footer({ displayName = "TARIQ YOUHANA LEON", contactEmail = "", showEmail = false }: FooterProps) {
   const footerRef = useRef<HTMLElement>(null);
   const shouldReduceMotion = useReducedMotion();
 
@@ -101,15 +104,11 @@ export function Footer({ displayName = "TARIQ YOUHANA LEON" }: FooterProps) {
               Contact //
             </h4>
             <ul className="space-y-2.5 text-sm">
-              <li className="flex items-center gap-2 text-muted">
-                <Mail className="w-4 h-4 text-text flex-shrink-0" />
-                <a
-                  href="mailto:contact@tariqleon.com"
-                  className="hover:text-signal transition-colors"
-                >
-                  contact@tariqleon.com
-                </a>
-              </li>
+              {showEmail && contactEmail && (
+                <li className="flex items-center gap-2 text-muted">
+                  <MailtoLink email={contactEmail} className="text-sm" />
+                </li>
+              )}
               <li className="flex items-center gap-2 text-muted">
                 <MapPin className="w-4 h-4 text-text flex-shrink-0" />
                 <span>Available remotely & worldwide</span>
