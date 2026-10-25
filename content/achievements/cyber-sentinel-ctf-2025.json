@@ -1,0 +1,16 @@
+{
+  "title": "CyberSentinel CTF National Championship",
+  "event_name": "CyberSentinel CTF 2025",
+  "kind": "ctf",
+  "result": "winner",
+  "result_text": "1st Place / National Champion",
+  "organizer": "Cyber Security Agency & Academic Alliance",
+  "date": "2025-11-18",
+  "team": "NullPointer Brigade (Team of 3)",
+  "role": "Binary Exploitation & Cryptography Lead",
+  "summary": "Captured 14 flags across binary analysis, heap spraying, and elliptic curve timing vulnerabilities, securing 1st place among 64 competing universities.",
+  "project_link": "",
+  "certificate_image": "",
+  "featured": true,
+  "draft": false
+}

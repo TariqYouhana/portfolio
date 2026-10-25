@@ -161,10 +161,49 @@ export async function getPosts() {
     );
 }
 
-export async function getAchievements() {
+export interface AchievementItem {
+  slug: string;
+  entry: {
+    title: string;
+    event_name?: string | null;
+    kind: "hackathon" | "ctf" | "competition" | "other";
+    result: "winner" | "podium" | "finalist" | "participant";
+    result_text?: string | null;
+    organizer?: string | null;
+    date?: string | null;
+    team?: string | null;
+    role?: string | null;
+    summary?: string | null;
+    project_link?: string | null;
+    certificate_image?: string | null;
+    featured: boolean;
+    draft: boolean;
+  };
+}
+
+export async function getAchievements(): Promise<AchievementItem[]> {
   const raw = await reader.collections.achievements.all();
   return raw
     .filter((a) => (process.env.NODE_ENV === "production" ? !a.entry.draft : true))
+    .map((a) => ({
+      slug: a.slug,
+      entry: {
+        title: a.entry.title,
+        event_name: a.entry.event_name,
+        kind: a.entry.kind,
+        result: a.entry.result,
+        result_text: a.entry.result_text,
+        organizer: a.entry.organizer,
+        date: a.entry.date,
+        team: a.entry.team,
+        role: a.entry.role,
+        summary: a.entry.summary,
+        project_link: a.entry.project_link,
+        certificate_image: a.entry.certificate_image,
+        featured: a.entry.featured ?? false,
+        draft: a.entry.draft ?? false,
+      },
+    }))
     .sort(
       (a, b) =>
         new Date(b.entry.date || 0).getTime() - new Date(a.entry.date || 0).getTime()

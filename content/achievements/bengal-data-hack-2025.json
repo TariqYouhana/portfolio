@@ -1,0 +1,16 @@
+{
+  "title": "Bengal Open Data Challenge",
+  "event_name": "Bengal Open Data Hackathon 2025",
+  "kind": "hackathon",
+  "result": "podium",
+  "result_text": "Finalist / Top 5 of 80 Teams",
+  "organizer": "Data Science Institute & Municipal Forum",
+  "date": "2025-08-22",
+  "team": "Tariq Leon & Research Pair",
+  "role": "Data Pipeline Engineer & Spatial Analyst",
+  "summary": "Processed 120GB of public transport mobility traces to identify bottlenecked transit intersections and proposed adaptive traffic light timing schedules.",
+  "project_link": "",
+  "certificate_image": "",
+  "featured": false,
+  "draft": false
+}

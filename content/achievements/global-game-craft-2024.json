@@ -1,0 +1,16 @@
+{
+  "title": "Global GameCraft 48-Hour Jam",
+  "event_name": "GameCraft International 2024",
+  "kind": "competition",
+  "result": "participant",
+  "result_text": "Verified Participant / Project Shipped",
+  "organizer": "GameCraft Foundation",
+  "date": "2024-10-06",
+  "team": "Solo Entry",
+  "role": "Solo Game Designer & Python Developer",
+  "summary": "Designed and shipped a functional isometric puzzle game exploring recursive memory concepts under strict 48-hour prototype constraints.",
+  "project_link": "/projects/python-learning-game",
+  "certificate_image": "",
+  "featured": false,
+  "draft": false
+}
