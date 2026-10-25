@@ -1,0 +1,32 @@
+{
+  "display_name": "Tariq Youhana Leon",
+  "tagline": "Data systems, distributed architectures, and visual storytelling. One clear front door, many rooms.",
+  "hero_credit_lines": [
+    {
+      "label": "FOCUS",
+      "value": "Data & Software Engineering"
+    },
+    {
+      "label": "VENTURE",
+      "value": "Tenstral Technologies"
+    },
+    {
+      "label": "STATUS",
+      "value": "Open to Collaboration"
+    },
+    {
+      "label": "DISCIPLINE",
+      "value": "History & Film Studies"
+    }
+  ],
+  "about_short": "Building high-throughput data pipelines and robust distributed architectures by day; exploring cartography, historical archives, 35mm cinematography, and poetry by night.",
+  "contact_email": "contact@tariqleon.com",
+  "show_email": true,
+  "contact_location": "Available worldwide / remotely",
+  "show_location": true,
+  "social_github": "https://github.com",
+  "social_linkedin": "https://linkedin.com",
+  "social_instagram": "https://instagram.com",
+  "social_youtube": "https://youtube.com",
+  "social_facebook": "https://facebook.com"
+}

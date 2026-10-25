@@ -1,0 +1,60 @@
+{
+  "items": [
+    {
+      "name": "Python & Data Pipelines",
+      "category": "data",
+      "level": "strong",
+      "order": 1,
+      "visible": true
+    },
+    {
+      "name": "Distributed Systems & SQL",
+      "category": "data",
+      "level": "strong",
+      "order": 2,
+      "visible": true
+    },
+    {
+      "name": "TypeScript & Next.js",
+      "category": "software",
+      "level": "strong",
+      "order": 3,
+      "visible": true
+    },
+    {
+      "name": "Go & Backend Microservices",
+      "category": "software",
+      "level": "comfortable",
+      "order": 4,
+      "visible": true
+    },
+    {
+      "name": "Docker & Linux Architecture",
+      "category": "tools",
+      "level": "strong",
+      "order": 5,
+      "visible": true
+    },
+    {
+      "name": "Git & CI/CD Automation",
+      "category": "tools",
+      "level": "strong",
+      "order": 6,
+      "visible": true
+    },
+    {
+      "name": "Rust & Low-level Concurrency",
+      "category": "software",
+      "level": "learning",
+      "order": 7,
+      "visible": true
+    },
+    {
+      "name": "35mm Analog Cinematography",
+      "category": "other",
+      "level": "comfortable",
+      "order": 8,
+      "visible": true
+    }
+  ]
+}

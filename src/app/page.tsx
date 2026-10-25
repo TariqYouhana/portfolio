@@ -1,59 +1,54 @@
 import Link from "next/link";
-import { ArrowRight, Layers, Award, Camera, BookOpen, User, Mail, ShieldAlert } from "lucide-react";
+import { ArrowRight, Layers, Award, Camera, BookOpen, User, Mail, ShieldCheck } from "lucide-react";
+import { getSiteSettings, getProjects } from "@/lib/content";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const settings = await getSiteSettings();
+  const projects = await getProjects();
+  const primaryProject = projects.find((p) => p.is_primary) || projects[0];
+
   return (
     <div className="w-full flex flex-col items-center">
-      {/* HERO SECTION PLACEHOLDER (Moody cinematic framing) */}
+      {/* HERO SECTION (Dynamic from content/settings/index.json) */}
       <section className="w-full min-h-[75vh] flex flex-col justify-center px-6 md:px-12 max-w-7xl mx-auto py-12 md:py-20">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-border text-xs font-mono text-signal mb-6 w-fit">
           <span className="w-2 h-2 rounded-full bg-signal animate-pulse" />
-          <span>PHASE_00 // SYSTEM_FOUNDATION_ACTIVE</span>
+          <span>PHASE_01 // CONTENT_SYSTEM_CONNECTED</span>
         </div>
 
         <div className="max-w-4xl space-y-4">
           <h1 className="font-display font-extrabold uppercase tracking-tight text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.95]">
-            Tariq <span className="font-accent italic font-normal text-signal">Youhana</span> Leon
+            {settings.display_name.split(" ")[0]}{" "}
+            <span className="font-accent italic font-normal text-signal">
+              {settings.display_name.split(" ")[1] || ""}
+            </span>{" "}
+            {settings.display_name.split(" ").slice(2).join(" ")}
           </h1>
           <p className="text-lg sm:text-xl md:text-2xl text-muted font-normal max-w-2xl leading-relaxed">
-            Data systems, distributed architectures, and visual storytelling. One clear front door, many rooms.
+            {settings.tagline}
           </p>
         </div>
 
-        {/* Film-credit style meta block preview (from Reference 03) */}
-        <div className="mt-12 pt-8 border-t border-border grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 max-w-3xl">
-          <div>
-            <span className="block font-mono text-xs uppercase tracking-wider text-signal font-semibold">
-              FOCUS //
-            </span>
-            <span className="text-sm font-medium text-text">Data & Software Engineering</span>
+        {/* Film-credit style meta block (Dynamic from content/settings) */}
+        {settings.hero_credit_lines && settings.hero_credit_lines.length > 0 && (
+          <div className="mt-12 pt-8 border-t border-border grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 max-w-3xl">
+            {settings.hero_credit_lines.map((line) => (
+              <div key={line.label}>
+                <span className="block font-mono text-xs uppercase tracking-wider text-signal font-semibold">
+                  {line.label} {"//"}
+                </span>
+                <span className="text-sm font-medium text-text">{line.value}</span>
+              </div>
+            ))}
           </div>
-          <div>
-            <span className="block font-mono text-xs uppercase tracking-wider text-signal font-semibold">
-              VENTURE //
-            </span>
-            <span className="text-sm font-medium text-text">Tenstral Technologies</span>
-          </div>
-          <div>
-            <span className="block font-mono text-xs uppercase tracking-wider text-signal font-semibold">
-              STATUS //
-            </span>
-            <span className="text-sm font-medium text-text">Open to Collaboration</span>
-          </div>
-          <div>
-            <span className="block font-mono text-xs uppercase tracking-wider text-signal font-semibold">
-              DISCIPLINE //
-            </span>
-            <span className="text-sm font-medium text-text">History & Film Studies</span>
-          </div>
-        </div>
+        )}
 
         <div className="mt-10 flex flex-wrap gap-4">
           <Link
             href="/projects"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-text text-bg font-medium text-sm hover:opacity-90 transition-opacity"
           >
-            <span>Explore Projects</span>
+            <span>Explore Projects ({projects.length})</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
           <Link
@@ -65,7 +60,38 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ROOMS DIRECTORY STRIP (Ensures page has natural scroll height for testing navbar & footer) */}
+      {/* PRIMARY PROJECT HIGHLIGHT */}
+      {primaryProject && (
+        <section className="w-full max-w-7xl mx-auto px-6 md:px-12 pb-12">
+          <div className="p-6 md:p-8 rounded-glass glass-panel border border-border/70 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div className="space-y-2 max-w-2xl">
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-mono px-2 py-0.5 rounded bg-signal/10 border border-signal/30 text-signal font-semibold">
+                  PRIMARY PROJECT
+                </span>
+                <span className="text-xs font-mono text-muted uppercase">
+                  STATUS: {primaryProject.status}
+                </span>
+              </div>
+              <h3 className="font-display text-2xl font-bold uppercase">
+                {primaryProject.title}
+              </h3>
+              <p className="text-sm text-muted leading-relaxed">
+                {primaryProject.tagline}
+              </p>
+            </div>
+            <Link
+              href={`/projects/${primaryProject.slug}`}
+              className="inline-flex items-center gap-2 text-xs font-mono px-4 py-2 rounded border border-text/30 hover:bg-surface text-text hover:border-text transition-colors whitespace-nowrap"
+            >
+              <span>OPEN FILE // DETAILS</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        </section>
+      )}
+
+      {/* ROOMS DIRECTORY STRIP */}
       <section className="w-full bg-surface/40 border-y border-border py-20 px-6 md:px-12">
         <div className="max-w-7xl mx-auto space-y-12">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
@@ -89,7 +115,7 @@ export default function HomePage() {
                 href: "/projects",
                 code: "ROOM_01 //",
                 icon: Layers,
-                desc: "Tabbed physical folder switcher featuring Tenstral, HIMA, Historical Atlas, and COLORPLAN.",
+                desc: `${projects.length} structured files in stack, including primary folder ${primaryProject?.title || ""}.`,
               },
               {
                 title: "Gallery",
@@ -117,14 +143,14 @@ export default function HomePage() {
                 href: "/about",
                 code: "ROOM_05 //",
                 icon: User,
-                desc: "Full biographical timeline, research trajectory, reading list, and active pursuits.",
+                desc: settings.about_short,
               },
               {
                 title: "Contact & Terminal",
                 href: "/contact",
                 code: "ROOM_06 //",
                 icon: Mail,
-                desc: "Direct communication channel with encrypted email delivery and spam verification.",
+                desc: `Direct communications channel (${settings.contact_email}). Encrypted email delivery.`,
               },
             ].map((room) => {
               const Icon = room.icon;
@@ -163,21 +189,21 @@ export default function HomePage() {
       <section className="w-full max-w-7xl mx-auto px-6 md:px-12 py-16">
         <div className="p-6 rounded-glass border border-border bg-surface/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <ShieldAlert className="w-5 h-5 text-signal flex-shrink-0" />
+            <ShieldCheck className="w-5 h-5 text-signal flex-shrink-0" />
             <div>
               <h4 className="font-mono text-xs uppercase text-text font-semibold">
-                ADMIN ACCESS // KEYSTATIC CMS
+                ADMIN ACCESS // KEYSTATIC CMS ACTIVE
               </h4>
               <p className="text-xs text-muted">
-                Private content portal scheduled for connection in Phase 1.
+                Private Git-backed content management active at <code>/admin</code>.
               </p>
             </div>
           </div>
           <Link
             href="/admin"
-            className="text-xs font-mono px-3 py-1.5 rounded border border-border hover:bg-surface text-muted hover:text-text transition-colors"
+            className="text-xs font-mono px-3.5 py-1.5 rounded border border-border hover:bg-surface text-muted hover:text-text transition-colors"
           >
-            Access /admin
+            Launch CMS Admin →
           </Link>
         </div>
       </section>

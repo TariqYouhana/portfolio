@@ -5,6 +5,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { NoiseOverlay } from "@/components/ui/NoiseOverlay";
 import { SkipToContent } from "@/components/ui/SkipToContent";
+import { getSiteSettings } from "@/lib/content";
 
 const fontDisplay = Archivo({
   subsets: ["latin"],
@@ -37,7 +38,7 @@ const fontBody = Inter({
 export const metadata: Metadata = {
   title: "Tariq Youhana Leon · Data & Software Engineering",
   description:
-    "Personal portfolio of Tariq Youhana Leon. Data systems, software engineering, visual journals, and technical research.",
+    "Personal portfolio of Tariq Youhana Leon. Data systems, distributed architectures, visual journals, and technical research.",
   icons: {
     icon: "/favicon.svg",
     apple: "/favicon.svg",
@@ -58,11 +59,21 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  let displayName = "TARIQ YOUHANA LEON";
+  try {
+    const settings = await getSiteSettings();
+    if (settings.display_name) {
+      displayName = settings.display_name;
+    }
+  } catch (e) {
+    console.warn("Could not load settings in RootLayout, using fallback:", e);
+  }
+
   return (
     <html
       lang="en"
@@ -75,7 +86,7 @@ export default function RootLayout({
         <main id="main-content" className="flex-1 flex flex-col pt-24 sm:pt-28">
           {children}
         </main>
-        <Footer />
+        <Footer displayName={displayName} />
       </body>
     </html>
   );
