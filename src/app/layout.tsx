@@ -36,7 +36,11 @@ const fontBody = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Tariq Youhana Leon · Data & Software Engineering",
+  metadataBase: new URL("https://tariqleon.com"),
+  title: {
+    default: "Tariq Youhana Leon · Data & Software Engineering",
+    template: "%s · Tariq Youhana Leon",
+  },
   description:
     "Personal portfolio of Tariq Youhana Leon. Data systems, distributed architectures, visual journals, and technical research.",
   icons: {
@@ -45,11 +49,25 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Tariq Youhana Leon · Portfolio",
-    description: "Data and software engineering, photography, history, and technical experiments.",
+    description:
+      "Data and software engineering, photography, history, and technical experiments.",
     url: "https://tariqleon.com",
     siteName: "Tariq Youhana Leon Portfolio",
     locale: "en_US",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Tariq Youhana Leon · Portfolio",
+    description:
+      "Data systems, distributed architectures, visual storytelling. Personal portfolio.",
+    creator: "@tariqleon",
+  },
+  alternates: {
+    canonical: "https://tariqleon.com",
+    types: {
+      "application/rss+xml": "https://tariqleon.com/rss.xml",
+    },
   },
 };
 

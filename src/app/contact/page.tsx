@@ -4,16 +4,27 @@ import { ContactForm } from "@/components/contact/ContactForm";
 import { ContactCoordinates } from "@/components/contact/ContactCoordinates";
 
 export const metadata: Metadata = {
-  title: "Contact — Tariq Youhana Leon",
+  title: "Contact",
   description:
     "Get in touch with Tariq Youhana Leon for engineering collaborations, consulting, research partnerships, or general inquiries.",
+  openGraph: {
+    title: "Contact — Tariq Youhana Leon",
+    description:
+      "Open channel for engineering engagements, research collaborations, consulting briefs, and direct inquiries.",
+    url: "https://tariqleon.com/contact",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact — Tariq Youhana Leon",
+    description: "Engineering, consulting, research — the form is open.",
+  },
 };
 
 export default async function ContactPage() {
   const s = await getSiteSettings();
 
   return (
-    <main className="pt-32 pb-24 px-6 max-w-5xl mx-auto">
+    <div className="pt-32 pb-24 px-6 max-w-5xl mx-auto">
       {/* ── Page header ── */}
       <div className="space-y-4 mb-16">
         <span className="font-mono text-xs uppercase text-signal tracking-widest font-semibold">
@@ -48,6 +59,6 @@ export default async function ContactPage() {
           socialFacebook={s.social_facebook}
         />
       </div>
-    </main>
+    </div>
   );
 }

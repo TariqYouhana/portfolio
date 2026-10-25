@@ -3,9 +3,25 @@ import { getPosts } from "@/lib/content";
 import { BlogCatalog } from "@/components/blog/BlogCatalog";
 
 export const metadata: Metadata = {
-  title: "Essays & Dispatches · Tariq Youhana Leon",
+  title: "Essays & Dispatches",
   description:
     "Writings on distributed data architecture, regional cartography, 35mm optical cinematography, and poetry.",
+  openGraph: {
+    title: "Essays & Dispatches — Tariq Youhana Leon",
+    description:
+      "Writings on distributed systems, cartography, analog photography, and Urdu poetry.",
+    url: "https://tariqleon.com/blog",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Essays & Dispatches — Tariq Youhana Leon",
+    description: "Distributed systems, cartography, analog photography, and poetry.",
+  },
+  alternates: {
+    types: {
+      "application/rss+xml": "https://tariqleon.com/rss.xml",
+    },
+  },
 };
 
 export default async function BlogPage() {

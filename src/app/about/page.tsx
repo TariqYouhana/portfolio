@@ -7,16 +7,27 @@ import { InterestsCatalog } from "@/components/about/InterestsCatalog";
 import { NowSection } from "@/components/about/NowSection";
 
 export const metadata: Metadata = {
-  title: "About — Tariq Youhana Leon",
+  title: "About",
   description:
     "Data engineer, distributed systems architect, historian, and filmmaker. Learn about Tariq Youhana Leon's trajectory, disciplines, and current work.",
+  openGraph: {
+    title: "About — Tariq Youhana Leon",
+    description:
+      "Trajectory, milestones, disciplines, and current research. The person behind the portfolio.",
+    url: "https://tariqleon.com/about",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About — Tariq Youhana Leon",
+    description: "Trajectory, milestones, disciplines, and current research.",
+  },
 };
 
 export default async function AboutPage() {
   const settings = await getSiteSettings();
 
   return (
-    <main className="pt-32 pb-24 px-6 max-w-5xl mx-auto space-y-24">
+    <div className="pt-32 pb-24 px-6 max-w-5xl mx-auto space-y-24">
       {/* ── Header ── */}
       <section className="space-y-6">
         <span className="font-mono text-xs uppercase text-signal tracking-widest font-semibold">
@@ -108,6 +119,6 @@ export default async function AboutPage() {
 
       {/* ── Interests ── */}
       <InterestsCatalog />
-    </main>
+    </div>
   );
 }

@@ -3,9 +3,20 @@ import { getAchievements } from "@/lib/content";
 import { AchievementsContainer } from "@/components/achievements/AchievementsContainer";
 
 export const metadata: Metadata = {
-  title: "Trophy Cabinet & Records · Tariq Youhana Leon",
+  title: "Trophy Cabinet",
   description:
     "Dark glass trophy cabinet cataloging verified hackathons, CTF victories, and podium finishes. Labelled with absolute honesty.",
+  openGraph: {
+    title: "Trophy Cabinet — Tariq Youhana Leon",
+    description:
+      "Verified competitive victories, hackathon podiums, and CTF championships. Every result documented with unvarnished accuracy.",
+    url: "https://tariqleon.com/achievements",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Trophy Cabinet — Tariq Youhana Leon",
+    description: "Spotlit shelves of verified competitive wins and podiums.",
+  },
 };
 
 export default async function AchievementsPage() {

@@ -18,8 +18,18 @@ export async function generateMetadata({ params }: ProjectCaseStudyProps): Promi
   const project = await getProject(slug);
   if (!project) return {};
   return {
-    title: `${project.title} · Case Study · Tariq Youhana Leon`,
+    title: project.title,
     description: project.tagline,
+    openGraph: {
+      title: `${project.title} · Tariq Youhana Leon`,
+      description: project.tagline,
+      url: `https://tariqleon.com/projects/${slug}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${project.title} · Tariq Youhana Leon`,
+      description: project.tagline,
+    },
   };
 }
 

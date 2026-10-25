@@ -21,13 +21,19 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   const post = await reader.collections.posts.read(slug);
   if (!post) return {};
   return {
-    title: `${post.title} · Tariq Youhana Leon`,
+    title: post.title,
     description: post.excerpt || undefined,
     openGraph: {
       title: `${post.title} · Tariq Youhana Leon`,
       description: post.excerpt || undefined,
       type: "article",
       publishedTime: post.publish_date || undefined,
+      url: `https://tariqleon.com/blog/${slug}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt || undefined,
     },
   };
 }

@@ -4,9 +4,20 @@ import { getPhotos, getAlbums } from "@/lib/content";
 import { GalleryContainer } from "@/components/gallery/GalleryContainer";
 
 export const metadata: Metadata = {
-  title: "Visual Journal & Photography · Tariq Youhana Leon",
+  title: "Visual Journal",
   description:
     "3D journal coverflow of 35mm optical street photography, architectural chiaroscuro, and travel essays.",
+  openGraph: {
+    title: "Visual Journal — Tariq Youhana Leon",
+    description:
+      "35mm analog photography, architectural chiaroscuro, and travel visual essays in a 3D coverflow journal.",
+    url: "https://tariqleon.com/gallery",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Visual Journal — Tariq Youhana Leon",
+    description: "35mm analog photography and travel visual essays.",
+  },
 };
 
 export default async function GalleryPage() {

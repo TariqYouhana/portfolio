@@ -1,6 +1,24 @@
+import type { Metadata } from "next";
 import { getProjects } from "@/lib/content";
 import { FolderSwitcher } from "@/components/projects/FolderSwitcher";
 import { ProjectCatalog } from "@/components/projects/ProjectCatalog";
+
+export const metadata: Metadata = {
+  title: "Projects & Systems",
+  description:
+    "Engineering work spanning data pipelines, distributed systems, AI platforms, and historical research tools.",
+  openGraph: {
+    title: "Projects & Systems — Tariq Youhana Leon",
+    description:
+      "Data pipelines, distributed architectures, AI platforms, and historical research tools.",
+    url: "https://tariqleon.com/projects",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Projects & Systems — Tariq Youhana Leon",
+    description: "Data pipelines, distributed systems, and more.",
+  },
+};
 
 export default async function ProjectsPage() {
   const projects = await getProjects();
