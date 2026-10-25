@@ -84,6 +84,57 @@ body {
   outline: 2px solid var(--text);
 }
 
+/* ── Button utilities ──────────────────────────────────────────────────── */
+/* Primary: cream background with dark text — red is a spice, not a button fill */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 4px;
+  font-size: 0.8125rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background-color: var(--cream, #EDE6D3);
+  color: var(--bg, #0F0E0C);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: opacity 0.15s ease, background-color 0.15s ease;
+}
+.btn-primary:hover {
+  opacity: 0.88;
+}
+
+/* Secondary: outlined, transparent fill */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 4px;
+  font-size: 0.8125rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background-color: transparent;
+  color: var(--text, #EDE6D3);
+  border: 1px solid var(--border, rgba(237, 230, 211, 0.15));
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.btn-secondary:hover {
+  border-color: var(--text, #EDE6D3);
+  color: var(--text, #EDE6D3);
+}
+
+/* ── Border radius token ───────────────────────────────────────────────── */
+.rounded-glass {
+  border-radius: 8px;
+}
+
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {
